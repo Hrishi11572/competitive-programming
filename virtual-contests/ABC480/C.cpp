@@ -1,5 +1,4 @@
 #include<iostream>
-#include<string>
 #include<algorithm>
 #include<vector>
 
@@ -14,32 +13,31 @@ ll ceil(ll a, ll b) {
 
 int main() {
     int n; 
-    ll K, T;
-    cin >> n >> K >> T; 
+    cin >> n; 
 
-    vector<ll> arr(n); 
-    for(int i=0; i<n; i++) {
-        cin >> arr[i]; 
+    ll K, T; 
+    cin >> K >> T; 
+
+    vector<ll> A(n); 
+    for(int i=0; i<n; i++){
+        cin >> A[i]; 
     }
-    
-    sort(arr.begin(), arr.end());
 
+    sort(A.begin(), A.end());
 
     ll cnt = 0; 
     ll pos = 0; 
 
-    for(int i=0; i<n; i++){
-        if(arr[i] >= T) break; 
-
-        if(pos < arr[i]){
-            ll delta = ceil(arr[i] - pos, K);
-            cnt += delta; 
+    for(int i=0; i<n; i++) {
+        if(A[i] >= T) break; 
+        if(pos < A[i]) {
+            cnt += ceil(A[i] - pos, K); 
         }
 
-        pos = arr[i] + K; 
+        pos = A[i] + K; 
     }
 
-    if(pos < T){
+    if(pos < T) {
         cnt += ceil(T - pos, K); 
     }
 
